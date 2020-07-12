@@ -13,41 +13,37 @@ function App() {
   const [selectedMenu] = useState(window.location.pathname);
   return (
     <Router>
-      <Layout className="layout">
-        <Header>
-          <div className="logo" />
-          <Menu
-            theme="dark"
-            mode="horizontal"
-            defaultSelectedKeys={[selectedMenu]}
-          >
-            <Menu.Item key="/">
-              <Link to="/">Rental Store</Link>
-            </Menu.Item>
-            <Menu.Item key="/order">
-              <Link to="/order">Your Order</Link>
-            </Menu.Item>
-          </Menu>
-        </Header>
-        <Content style={{ padding: '0 50px' }}>
-          <div className="site-layout-content">
-            <Switch>
-              <Route path="/order">
-                <OrderComponent />
-              </Route>
-              <Route path="/chat">
-                <ChatComponent />
-              </Route>
-              <Route path="/">
-                <ShopComponent />
-              </Route>
-            </Switch>
-          </div>
-        </Content>
-        <Footer style={{ textAlign: 'center' }}>
-          Crafted by Yong Lin Wang
-        </Footer>
-      </Layout>
+      <Header>
+        <div className="logo" />
+        <Menu
+          theme="dark"
+          mode="horizontal"
+          defaultSelectedKeys={[selectedMenu]}
+        >
+          <Menu.Item key="/">
+            <Link to="/">Rental Store</Link>
+          </Menu.Item>
+          <Menu.Item key="/order">
+            <Link to="/order">Your Order</Link>
+          </Menu.Item>
+        </Menu>
+      </Header>
+      <Content>
+        <div className="site-layout-content">
+          <Switch>
+            <Route path="/order">
+              <OrderComponent />
+            </Route>
+            <Route path="/chat">
+              <ChatComponent />
+            </Route>
+            <Route path="/">
+              <ShopComponent />
+            </Route>
+          </Switch>
+        </div>
+      </Content>
+      <Footer style={{ textAlign: 'center' }}>Crafted by Yong Lin Wang</Footer>
       <div className="contact-us-container">
         <Tooltip placement="left" title="Got a question? Contact us now!">
           <Link to="/chat">

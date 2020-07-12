@@ -53,7 +53,7 @@ const ShopComponent = () => {
       />
       <Row gutter={[16, 16]}>
         {VisionaryCatelog.map((item) => (
-          <Col span={8} key={item.name}>
+          <Col xs={24} sm={12} md={8} lg={8} xl={4} key={item.name}>
             <Card
               hoverable
               cover={
