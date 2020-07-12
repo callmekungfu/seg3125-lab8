@@ -3,7 +3,23 @@
 .site-layout-content {
   background: #fff;
   padding: 24px;
-  min-height: 280px;
+  min-height: 89.5vh;
+}
+
+.contact-us-container {
+  position: fixed;
+  right: 30px;
+  bottom: 30px;
+}
+
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  height: 86vh;
+}
+
+.chat-container .chat-comments {
+  flex-grow: 1;
 }
 
 .ant-card-cover {

@@ -1,35 +1,67 @@
-import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { Layout, Menu } from 'antd';
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { Layout, Menu, Button, Tooltip } from 'antd';
+import { QuestionOutlined } from '@ant-design/icons';
 import './App.css';
 import ShopComponent from './components/Shop';
+import OrderComponent from './components/Order';
+import ChatComponent from './components/Chat';
 
 const { Header, Content, Footer } = Layout;
 
 function App() {
+  const [selectedMenu] = useState(window.location.pathname);
   return (
-    <Layout className="layout">
-      <Header>
-        <div className="logo" />
-        <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['1']}>
-          <Menu.Item key="1">Rental Store</Menu.Item>
-          <Menu.Item key="2">Your Order</Menu.Item>
-          <Menu.Item key="3">Contact Us</Menu.Item>
-        </Menu>
-      </Header>
-      <Content style={{ padding: '0 50px' }}>
-        <div className="site-layout-content">
-          <Router>
+    <Router>
+      <Layout className="layout">
+        <Header>
+          <div className="logo" />
+          <Menu
+            theme="dark"
+            mode="horizontal"
+            defaultSelectedKeys={[selectedMenu]}
+          >
+            <Menu.Item key="/">
+              <Link to="/">Rental Store</Link>
+            </Menu.Item>
+            <Menu.Item key="/order">
+              <Link to="/order">Your Order</Link>
+            </Menu.Item>
+          </Menu>
+        </Header>
+        <Content style={{ padding: '0 50px' }}>
+          <div className="site-layout-content">
             <Switch>
+              <Route path="/order">
+                <OrderComponent />
+              </Route>
+              <Route path="/chat">
+                <ChatComponent />
+              </Route>
               <Route path="/">
                 <ShopComponent />
               </Route>
             </Switch>
-          </Router>
-        </div>
-      </Content>
-      <Footer style={{ textAlign: 'center' }}>Crafted by Yong Lin Wang</Footer>
-    </Layout>
+          </div>
+        </Content>
+        <Footer style={{ textAlign: 'center' }}>
+          Crafted by Yong Lin Wang
+        </Footer>
+      </Layout>
+      <div className="contact-us-container">
+        <Tooltip placement="left" title="Got a question? Contact us now!">
+          <Link to="/chat">
+            <Button
+              type="primary"
+              shape="circle"
+              title="contact us"
+              icon={<QuestionOutlined />}
+              size="large"
+            />
+          </Link>
+        </Tooltip>
+      </div>
+    </Router>
   );
 }
 

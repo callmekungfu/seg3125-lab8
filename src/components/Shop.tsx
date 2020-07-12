@@ -53,7 +53,7 @@ const ShopComponent = () => {
       />
       <Row gutter={[16, 16]}>
         {VisionaryCatelog.map((item) => (
-          <Col span={8}>
+          <Col span={8} key={item.name}>
             <Card
               hoverable
               cover={
@@ -64,13 +64,12 @@ const ShopComponent = () => {
             >
               <Meta
                 title={item.name}
-                description={item.description.short}
+                description={`${
+                  item.description.short
+                } Available in ${item.available_locations.join(', ')}`}
                 className="mb-15"
               />
-              <Meta
-                title={`$${item.price_per_day.toFixed(2)}/day`}
-                description={item.available_locations.join(', ')}
-              />
+              <Meta title={`$${item.price_per_day.toFixed(2)}/day`} />
             </Card>
           </Col>
         ))}
